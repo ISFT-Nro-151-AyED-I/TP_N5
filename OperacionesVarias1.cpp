@@ -14,14 +14,20 @@ d.	Realizar un programa que permita saber si un número es primo o no. */
 
 using namespace std;
 
-void celsiusAFahrenheit(double celsius, double &fahrenheit);
-void fahrenheitACelsius(double fahrenheit, double &celsius);
-void convertirTemperatura();
-double sumar(double a, double b);
-double restar(double a, double b);
-double multiplicar(double a, double b);
-double dividir(double a, double b);
-void realizarOperaciones();
+// Prototipos de funciones para conversión de temperatura.
+void celsiusAFahrenheit();
+void fahrenheitACelsius();
+void menuTemperatura();
+
+// Prototipos de funciones para operaciones matemáticas.
+void sumar();
+void restar();
+void multiplicar();
+void dividir();
+void menuOperaciones();
+
+// Prototipos de funciones para verificaciones.
+void menuVerificaciones();
 void verificarRango();
 void verificarPrimo();
 
@@ -31,204 +37,267 @@ int main()
 
         while (opcion != 0) 
             {
-                cout << "\nELIGE LA OPERACION A REALIZAR\n" << "-----------------------------\n" << endl;
-                cout << "1. Convertir Temperatura\n";
-                cout << "2. Realizar Operaciones\n";
-                cout << "3. Verificar Rango\n";
-                cout << "4. Verificar Primo\n";
-                cout << "0. Salir\n";
-                cout << "Seleccione una opcion: ";
+                cout << "\n--------------" << "\nMENU PRINCIPAL\n" << "--------------" << endl;
+                cout << "1. Conversion de Temperatura" << endl;
+                cout << "2. Operaciones Matematicas" << endl;
+                cout << "3. Verificaciones numericas" << endl;
+                cout << "0. Salir" << endl;
+                cout << "\nSelecciona una opcion: ";
                 cin >> opcion;
 
                 if (opcion == 1) 
                     {
-                        convertirTemperatura();
+                        menuTemperatura();
 
                     } else if (opcion == 2) 
                         {
-                            realizarOperaciones();
+                            menuOperaciones();
 
                         } else if (opcion == 3) 
                             {
-                                verificarRango();
+                                menuVerificaciones();
 
-                            } else if (opcion == 4) 
+                            } else if (opcion == 0) 
                                 {
-                                    verificarPrimo();
+                                    cout << "Saliendo del programa." << endl;
 
-                                } else if (opcion == 0) 
+                                } else 
                                     {
-                                        cout << "Saliendo del programa.\n";
-
-                                    } else 
-                                        {
-                                            cout << "Opcion invalida. Intente de nuevo.\n";
-                                        }
+                                        cout << "Opcion invalida. Intenta de nuevo." << endl;
+                                    }
             }
 
         return 0;
     }
 
-// Función para convertir Celsius a Fahrenheit.
-void celsiusAFahrenheit(double celsius, double &fahrenheit) 
-    {
-        fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
-    }
-
-// Función para convertir Fahrenheit a Celsius.
-void fahrenheitACelsius(double fahrenheit, double &celsius) 
-    {
-        celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
-    }
-
-// Función para realizar la conversión de temperatura.
-void convertirTemperatura() 
+// Menú de conversión de temperatura.
+void menuTemperatura() 
     {
         int opcion = -1;
-        double temperatura, resultado = 0.0;
 
-        while (opcion != 1 && opcion != 2) 
+        while (opcion != 0) 
             {
-                cout << "\nCONVERSOR DE TEMPERATURA\n" << "------------------------\n" << endl;
-                cout << "1. Celsius a Fahrenheit\n";
-                cout << "2. Fahrenheit a Celsius\n";
-                cout << "Seleccione una opcion: ";
+                cout << "\nCONVERSION DE TEMPERATURA\n" << "------------------------" << endl;
+                cout << "1. Celsius a Fahrenheit" << endl;
+                cout << "2. Fahrenheit a Celsius" << endl;
+                cout << "0. Volver al menu principal" << endl;
+                cout << "\nSelecciona una opcion: ";
                 cin >> opcion;
 
                 if (opcion == 1) 
                     {
-                        cout << "Ingrese la temperatura en Celsius: ";
-                        cin >> temperatura;
-                        celsiusAFahrenheit(temperatura, resultado);
-                        cout << temperatura << " Celsius = " << resultado << " Fahrenheit\n";
+                        celsiusAFahrenheit();
 
                     } else if (opcion == 2) 
                         {
-                            cout << "Ingrese la temperatura en Fahrenheit: ";
-                            cin >> temperatura;
-                            fahrenheitACelsius(temperatura, resultado);
-                            cout << temperatura << " Fahrenheit = " << resultado << " Celsius\n";
+                            fahrenheitACelsius();
 
-                        } else 
+                        } else if (opcion == 0) 
                             {
-                                cout << "Opcion invalida. Intente de nuevo.\n";
-                            }
-            }
-    }
+                                cout << "Volviendo al menu principal." << endl;
 
-// Función para sumar dos números.
-double sumar(double a, double b) 
-    {
-        return a + b;
-    }
-
-// Función para restar dos números.
-double restar(double a, double b) 
-    {
-        return a - b;
-    }
-
-// Función para multiplicar dos números.
-double multiplicar(double a, double b) 
-    {
-        return a * b;
-    }
-
-// Función para dividir dos números.
-double dividir(double a, double b) 
-    {
-        if (b == 0) 
-            {
-                cout << "Error: No se puede dividir por cero.\n";
-                return 0;
-            }
-
-        return a / b;
-    }
-
-// Función para realizar operaciones aritméticas.
-void realizarOperaciones() 
-    {
-        int operacion = -1;
-        double num1, num2, resultado = 0.0;
-
-        while (operacion < 1 || operacion > 4) 
-            {
-                cout << "\nCALCULADORA BASICA\n" << "------------------\n" << endl;
-                cout << "1. Sumar\n";
-                cout << "2. Restar\n";
-                cout << "3. Multiplicar\n";
-                cout << "4. Dividir\n";
-                cout << "Seleccione una operacion: ";
-                cin >> operacion;
-
-                cout << "Ingrese el primer numero: ";
-                cin >> num1;
-                cout << "Ingrese el segundo numero: ";
-                cin >> num2;
-
-                if (operacion == 1) 
-                    {
-                        resultado = sumar(num1, num2);
-                        cout << num1 << " + " << num2 << " = " << resultado << endl;
-
-                    } else if (operacion == 2) 
-                        {
-                            resultado = restar(num1, num2);
-                            cout << num1 << " - " << num2 << " = " << resultado << endl;
-
-                        } else if (operacion == 3) 
-                            {
-                                resultado = multiplicar(num1, num2);
-                                cout << num1 << " * " << num2 << " = " << resultado << endl;
-
-                            } else if (operacion == 4) 
+                            } else 
                                 {
-                                    resultado = dividir(num1, num2);
-
-                                    if (resultado != 0) 
-                                        {
-                                            cout << num1 << " / " << num2 << " = " << resultado << endl;
-                                        }
-                                } else 
-                                    {
-                                        cout << "Operacion invalida. Intente de nuevo.\n";
-                                    }
+                                    cout << "Opcion invalida. Intenta de nuevo." << endl;
+                                }
             }
     }
 
-// Función para verificar si un número está en un rango.
+void celsiusAFahrenheit() 
+    {
+        double celsius = 0.0, fahrenheit = 0.0;
+
+        cout << "\nCONVERTIR CELSIUS A FAHRENHEIT\n" << "-----------------------------" << endl;
+        cout << "Ingresa la temperatura en Celsius: ";
+        cin >> celsius;
+
+        fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
+        cout << celsius << " C = " << fahrenheit << " F" << endl;
+    }
+
+void fahrenheitACelsius() 
+    {
+        double fahrenheit = 0.0, celsius = 0.0;
+
+        cout << "\nCONVERTIR FAHRENHEIT A CELSIUS\n"  << "-----------------------------"<< endl;
+        cout << "Ingresa la temperatura en Fahrenheit: ";
+        cin >> fahrenheit;
+
+        celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
+
+        cout << fahrenheit << " F = " << celsius << " C" << endl;
+    }
+
+// Menú de operaciones matemáticas.
+void menuOperaciones() 
+    {
+        int opcion = -1;
+
+        while (opcion != 0) 
+            {
+                cout << "\nOPERACIONES MATEMATICAS\n" << "-----------------------" << endl;
+                cout << "1. Sumar" << endl;
+                cout << "2. Restar" << endl;
+                cout << "3. Multiplicar" << endl;
+                cout << "4. Dividir" << endl;
+                cout << "0. Volver al menu principal" << endl;
+                cout << "\nSelecciona una operacion: ";
+                cin >> opcion;
+
+                if (opcion == 1) 
+                    {
+                        sumar();
+
+                    } else if (opcion == 2) 
+                        {
+                            restar();
+
+                        } else if (opcion == 3) 
+                            {
+                                multiplicar();
+
+                            } else if (opcion == 4) 
+                                {
+                                    dividir();
+
+                                } else if (opcion == 0) 
+                                    {
+                                        cout << "Volviendo al menu principal." << endl;
+
+                                    } else 
+                                        {
+                                            cout << "Opcion invalida. Intenta de nuevo." << endl;
+                                        }
+            }
+    }
+
+void sumar() 
+    {
+        double num1 = 0.0, num2 = 0.0;
+
+        cout << "\nSUMA DE NUMEROS\n" << "--------------" << endl;
+        cout << "Ingresa el primer numero: ";
+        cin >> num1;
+
+        cout << "Ingresa el segundo numero: ";
+        cin >> num2;
+
+        cout << num1 << " + " << num2 << " = " << (num1 + num2) << endl;
+    }
+
+void restar() 
+    {
+        double num1 = 0.0, num2 = 0.0;
+
+        cout << "\nRESTA DE NUMEROS\n" << "--------------" << endl;
+        cout << "Ingresa el primer numero: ";
+        cin >> num1;
+
+        cout << "Ingresa el segundo numero: ";
+        cin >> num2;
+        
+        cout << num1 << " - " << num2 << " = " << (num1 - num2) << endl;
+    }
+
+void multiplicar() 
+    {
+        double num1 = 0.0, num2 = 0.0;
+
+        cout << "\nMULTIPLICACION DE NUMEROS\n" << "-----------------------" << endl;
+        cout << "Ingresa el primer numero: ";
+        cin >> num1;
+
+        cout << "Ingresa el segundo numero: ";
+        cin >> num2;
+        
+        cout << num1 << " * " << num2 << " = " << (num1 * num2) << endl;
+    }
+
+void dividir() 
+    {
+        double num1 = 0.0, num2 = 0.0;
+
+        cout << "\nDIVISION DE NUMEROS\n" "------------------" << endl;
+        cout << "Ingresa el numerador: ";
+        cin >> num1;
+
+        cout << "Ingresa el denominador: ";
+        cin >> num2;
+        
+        if (num2 == 0) 
+            {
+                cout << "Error: No se puede dividir por cero." << endl;
+                
+            } else 
+                {
+                    cout << num1 << " / " << num2 << " = " << (num1 / num2) << endl;
+                }
+    }
+
+// Menú de verificaciones.
+void menuVerificaciones() 
+    {
+        int opcion = -1;
+
+        while (opcion != 0) 
+            {
+                cout << "VERIFICACIONES NUMERICAS\n" << "------------------------" << endl;
+                cout << "1. Verificar rango" << endl;
+                cout << "2. Verificar numero primo" << endl;
+                cout << "0. Volver al menu principal" << endl;
+                cout << "\nSelecciona una opcion: ";
+                cin >> opcion;
+
+                if (opcion == 1) 
+                    {
+                        verificarRango();
+
+                    } else if (opcion == 2) 
+                        {
+                            verificarPrimo();
+
+                        } else if (opcion == 0) 
+                            {
+                                cout << "Volviendo al menu principal." << endl;
+
+                            } else 
+                                {
+                                    cout << "Opcion invalida. Intenta de nuevo." << endl;
+                                }
+            }
+    }
+
 void verificarRango() 
     {
-        int numero, inicioRango, finRango;
+        int inicioRango = 0, finRango = 0, numero = 0;
 
-        cout << "\nVERIFICAR RANGO NUMERICO\n" << "------------------------\n" << endl;
-        cout << "Ingrese el inicio del rango: ";
+        cout << "\nVERIFICACION DE RANGO\n" << "--------------------" << endl;
+        cout << "Ingresa el inicio del rango: ";
         cin >> inicioRango;
-        cout << "Ingrese el fin del rango: ";
+
+        cout << "Ingresa el fin del rango: ";
         cin >> finRango;
 
-        cout << "Ingrese un numero para verificar: ";
+        cout << "Ingresa un numero para verificar: ";
         cin >> numero;
 
         if (numero >= inicioRango && numero <= finRango) 
             {
-                cout << numero << " esta dentro del rango [" << inicioRango << ", " << finRango << "]\n";
+                cout << numero << " esta dentro del rango [" << inicioRango << ", " << finRango << "]" << endl;
 
             } else 
                 {
-                    cout << numero << " esta fuera del rango [" << inicioRango << ", " << finRango << "]\n";
+                    cout << numero << " esta fuera del rango [" << inicioRango << ", " << finRango << "]" << endl;
                 }
     }
 
-// Función para verificar si un número es primo.
 void verificarPrimo() 
     {
-        int numero;
+        int numero = 0;
         bool es_primo = true;
 
-        cout << "\nVERIFICAR PRIMOS\n" << "----------------\n" << endl;
-        cout << "Ingrese un numero para verificar si es primo: ";
+        cout << "\nVERIFICACION DE NUMERO PRIMO\n" << "---------------------------" << endl;
+        cout << "Ingresa un numero para verificar: ";
         cin >> numero;
 
         if (numero <= 1) 
@@ -247,12 +316,12 @@ void verificarPrimo()
                         }
                 }
 
-        if (es_primo) 
-            {
-                cout << numero << " es un numero primo\n";
-
-            } else 
+            if (es_primo) 
                 {
-                    cout << numero << " no es un numero primo\n";
-                }
+                    cout << numero << " Es un numero primo" << endl;
+                    
+                } else 
+                    {
+                        cout << numero << " No es un numero primo" << endl;
+                    }
     }
